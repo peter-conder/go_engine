@@ -1,0 +1,19 @@
+.boardContainer {
+    position: relative;
+}
+
+.boardCanvas {
+    position: absolute;
+}
+
+.squareContainer {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100px;
+    gap: 14px;
+}
+.square {
+    border: solid;
+    aspect-ratio: 1;
+}
+

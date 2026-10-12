@@ -8,7 +8,7 @@
  * Make a loop that adds 25 squares to the boardContainer div, then use css to make them into a grid
  */
 
-const boardContainer = document.querySelector(".board");
+const squareContainer = document.querySelector(".squareContainer");
 let boardArray = [];
 
 function makeBoardGrid(n) {     //n = desired board size (5 will output a 5x5 board, etc)
@@ -16,10 +16,20 @@ let t = 1;
 for (i=0; i<n*n; i++) {
     let newSquare = document.createElement("div");
     newSquare.classList.add(`square`);
-    newSquare.appendChild(boardContainer);
+    squareContainer.appendChild(newSquare);
+        //const textContent = document.createTextNode("square exist");
+        //newSquare.appendChild(textContent);
     boardArray.push(newSquare);
     t++;
         }
     }
     makeBoardGrid(5);
     console.log(boardArray);
+
+//now that I have squares on my canvas element, I can choose where to go from here. Ideally the makeBoardGrid function would decide how large the board is and render it dynamically based on how large it is. What that means is that it would render all the square divs, the canvas lines and the board color all at once. This is probably the easiest way to go in the long run.
+/** What to do in which order? ((PSEUDOCODE))
+ * create divs according to board size
+     * make sure that divs are spaced equally around the board
+ *  render lines on the canvas
+ */
+//the canvas will have its color built in and will always remain the same size. Since the number of stones on the board can change dramatically, rendering the stones on the board will require them to have a size proportionate to the number of squares on the board.
