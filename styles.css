@@ -1,19 +1,49 @@
 .boardContainer {
     position: relative;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    border: solid red;
+    width: 30vw;
+    max-width: 40vw;
+    min-width: 20vw;
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: 1;
+        resize: horizontal;
+        overflow: hidden;
+    
 }
 
 .boardCanvas {
     position: absolute;
+    height: 50vw;
+    height: 50vw;
+    aspect-ratio: 1;    
+    z-index: 1;
 }
 
 .squareContainer {
-    position: absolute;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
     display: grid;
-    grid-template-columns: 100px 100px 100px 100px 100px;
-    gap: 14px;
+    grid-template-columns: repeat(5, 20%);
+    justify-content: space-evenly;
+    background-color: none;
+    z-index: 1;
 }
 .square {
+    display: block;
     border: solid;
     aspect-ratio: 1;
+    height: 100%;
+    z-index: 1;
+}
+
+/**This is just for testing purposes**/
+.square:hover {
+    background-color: lightgray;
+    transition: .4s;
 }
 

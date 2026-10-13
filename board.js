@@ -9,11 +9,14 @@
  */
 
 const squareContainer = document.querySelector(".squareContainer");
+const boardCanvas = document.querySelector(".boardCanvas");
+//const boardSquares = document.querySelectorAll(".square");
 let boardArray = [];
 
 function makeBoardGrid(n) {     //n = desired board size (5 will output a 5x5 board, etc)
 let t = 1;
 for (i=0; i<n*n; i++) {
+
     let newSquare = document.createElement("div");
     newSquare.classList.add(`square`);
     squareContainer.appendChild(newSquare);
@@ -22,14 +25,23 @@ for (i=0; i<n*n; i++) {
     boardArray.push(newSquare);
     t++;
         }
+    function setStyles(boardSize) {
+        let returnedNumber;
+        function calculateNumber(boardSize) {
+            //this will take boardsize and calculate the spacing between columns with it
+            //divide 100 by 5, 13, 19
+        returnedNumber = 100/boardSize;
+            
+        }
+        calculateNumber(n);
+        return squareContainer.style.gridTemplateColumns=`repeat(${n}, ${returnedNumber})`;
+    //setStyles(n);
     }
-    makeBoardGrid(5);
+    setStyles(n);
+}
+
+    makeBoardGrid(6);
     console.log(boardArray);
 
-//now that I have squares on my canvas element, I can choose where to go from here. Ideally the makeBoardGrid function would decide how large the board is and render it dynamically based on how large it is. What that means is that it would render all the square divs, the canvas lines and the board color all at once. This is probably the easiest way to go in the long run.
-/** What to do in which order? ((PSEUDOCODE))
- * create divs according to board size
-     * make sure that divs are spaced equally around the board
- *  render lines on the canvas
- */
-//the canvas will have its color built in and will always remain the same size. Since the number of stones on the board can change dramatically, rendering the stones on the board will require them to have a size proportionate to the number of squares on the board.
+//this function works with 5, but not with any other number.
+//rows aren't being modified, always staying at 5
