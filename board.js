@@ -22,26 +22,11 @@ for (i=0; i<n*n; i++) {
     squareContainer.appendChild(newSquare);
         //const textContent = document.createTextNode("square exist");
         //newSquare.appendChild(textContent);
-    boardArray.push(newSquare);
+    boardArray.push(newSquare); //maybe make a square info object and push that instead of the div
     t++;
         }
-    function setStyles(boardSize) {
-        let returnedNumber;
-        function calculateNumber(boardSize) {
-            //this will take boardsize and calculate the spacing between columns with it
-            //divide 100 by 5, 13, 19
-        returnedNumber = 100/boardSize;
-            
-        }
-        calculateNumber(n);
-        return squareContainer.style.gridTemplateColumns=`repeat(${n}, ${returnedNumber})`;
-    //setStyles(n);
-    }
-    setStyles(n);
+    let calculatedSpacing = 100/n;
+    squareContainer.style.gridTemplateColumns=`repeat(${n}, ${calculatedSpacing}%)`;
 }
-
-    makeBoardGrid(6);
+    makeBoardGrid(5);
     console.log(boardArray);
-
-//this function works with 5, but not with any other number.
-//rows aren't being modified, always staying at 5

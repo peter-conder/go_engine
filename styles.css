@@ -28,7 +28,7 @@
     justify-items: center;
     align-items: center;
     display: grid;
-    grid-template-columns: repeat(5, 20%);
+    /**grid-template-columns: repeat(10, 10%);**/
     justify-content: space-evenly;
     background-color: none;
     z-index: 1;
