@@ -9,7 +9,12 @@
  */
 
 const squareContainer = document.querySelector(".squareContainer");
-const boardCanvas = document.querySelector(".boardCanvas");
+
+//=====Canvas logic====
+const canvas = document.querySelector(".boardCanvas");
+const ctx = canvas.getContext("2d");
+ctx.fillStyle = "#d6bd90";
+ctx.fillRect(0, 0, 1000, 1000);
 //const boardSquares = document.querySelectorAll(".square");
 let boardArray = [];
 
@@ -30,3 +35,16 @@ for (i=0; i<n*n; i++) {
 }
     makeBoardGrid(5);
     console.log(boardArray);
+
+/** Drawing Canvas Lines
+ * board has n-2 lines, both ways.
+ * new function, for loop that draws n-2 lines equally spaced on the x and y axes
+     * to draw a line, you use 4 arguments:
+     * beginPath() -- nothing needed
+     * moveTo(x,y) -- line start
+     * lineTo(x,y) -- line end
+     * Stroke() -- nothing needed
+ * The math only needs to happen at x and y.
+ * Math also needs to make a (n-2)^2 grid.
+ * We can't space the lines equally with a simple 100/(n-2), because that would space the lines further apart than is necessary. I can reuse calculatedSpacing though, because this divides 100 by n, giving me a percent, and this is perfect. I don't even need to do n-2 actually, b/c I can just render all the lines, which will be perfect. So that solves the spacing issue. Just add calculatedNumber to the x and y coordinates after you render each line.
+ */
