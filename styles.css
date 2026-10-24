@@ -1,3 +1,44 @@
+#mainPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #466365;
+}
+
+.separator {
+    border: solid;
+    border-radius: 15px;
+}
+
+#leftSide {
+    height: 55vw;
+    width: 20vw;
+}
+
+#header {
+    height: 10%;
+    width: 100%;
+    align-content: center;
+}
+
+#headerText {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: #88292F;
+}
+
+#center {
+    width: 55vw;
+    height: 55vw;
+    align-content: center;
+}
+
+#rightSide {
+    width: 20vw;
+    height: 55vw;
+}
+
 .boardContainer {
     position: relative;
     display: flex;
@@ -5,12 +46,13 @@
     justify-self: center;
     /*border: solid blue;*/
     width: 30vw;
-    max-width: 40vw;
-    min-width: 20vw;
+    max-width: 80%;
+    min-width: 20%;
     height: auto;
     aspect-ratio: 1;
         resize: horizontal;
         overflow: hidden;
+    box-shadow: 10px 5px 5px #324b4d;
     
 }
 

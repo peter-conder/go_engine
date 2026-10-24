@@ -9,13 +9,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="boardContainer">
-        <canvas class="boardCanvas" width="1000" height="1000">  </canvas>
-        <!--The board canvas is completely accidental. I could assign a background color to the squarecontainer and the game would still technically work perfectly.-->
-         <div class="squareContainer"></div>
-    </div>
-    <div id="information">
-        <!--information about scoring, whose turn is it, prisoners, etc. will go here-->
+    <div id="mainPage">
+        <div id="leftSide" class="separator">
+            <div id="header">
+                <p id="headerText">HIBANA GO 火花</p>
+            </div>
+        </div>
+        <div id="center" class="separator">
+            <div class="boardContainer">
+                <canvas class="boardCanvas" width="1000" height="1000">  </canvas>
+                <div class="squareContainer"></div>
+            </div>
+        </div>
+        <div id="rightSide" class="separator">
+           <div id="information">
+        </div>
+        </div>
     </div>
 </body>
 </html>
