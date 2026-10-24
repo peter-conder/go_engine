@@ -10,12 +10,10 @@
 
 const squareContainer = document.querySelector(".squareContainer");
 
-//=====Canvas logic====
 const canvas = document.querySelector(".boardCanvas");
 const ctx = canvas.getContext("2d");
 ctx.fillStyle = "#d6bd90";
 ctx.fillRect(0, 0, 1000, 1000);
-//const boardSquares = document.querySelectorAll(".square");
 let boardArray = [];
 
 function makeBoardGrid(n) {     //n = desired board size (5 will output a 5x5 board, etc)
@@ -32,19 +30,100 @@ for (i=0; i<n*n; i++) {
         }
     let calculatedSpacing = 100/n;
     squareContainer.style.gridTemplateColumns=`repeat(${n}, ${calculatedSpacing}%)`;
+
+    function makeLineGrid(gridSize) {
+        let size = gridSize-2;
+            // Draws square
+            function drawSquare() {
+            ctx.beginPath();
+            ctx.moveTo(97.5, 100);
+            ctx.lineTo(900, 100);
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            //====
+            ctx.beginPath();
+            ctx.moveTo(100, 100);
+            ctx.lineTo(100, 900);
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            //====
+             ctx.beginPath();
+            ctx.moveTo(897.5, 900);
+            ctx.lineTo(900, 97.5);
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            //====
+            ctx.beginPath();
+            ctx.moveTo(900,900);
+            ctx.lineTo(97.5, 900);
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            }
+            //draws grid
+            //keeping these two functions separated will let me do more precise calculations later
+            function drawGrid() {
+                ctx.beginPath();
+                ctx.moveTo(300, 100);
+                ctx.lineTo(300, 900);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(500, 100);
+                ctx.lineTo(500, 900);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(700, 100);
+                ctx.lineTo(700, 900);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(100, 300);
+                ctx.lineTo(900, 300);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(100, 500);
+                ctx.lineTo(900, 500);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(100, 700);
+                ctx.lineTo(900, 700);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+            }
+        drawSquare();
+        drawGrid();
+    }
+    /**
+     * New problem! the lines aren't moving with the resizing and are also out of frame
+     */
+    makeLineGrid(n);
 }
     makeBoardGrid(5);
     console.log(boardArray);
 
-/** Drawing Canvas Lines
- * board has n-2 lines, both ways.
- * new function, for loop that draws n-2 lines equally spaced on the x and y axes
-     * to draw a line, you use 4 arguments:
-     * beginPath() -- nothing needed
-     * moveTo(x,y) -- line start
-     * lineTo(x,y) -- line end
-     * Stroke() -- nothing needed
- * The math only needs to happen at x and y.
- * Math also needs to make a (n-2)^2 grid.
- * We can't space the lines equally with a simple 100/(n-2), because that would space the lines further apart than is necessary. I can reuse calculatedSpacing though, because this divides 100 by n, giving me a percent, and this is perfect. I don't even need to do n-2 actually, b/c I can just render all the lines, which will be perfect. So that solves the spacing issue. Just add calculatedNumber to the x and y coordinates after you render each line.
+
+
+/**
+ * What if I rendered a 4x4 grid instead? If I offset the grid, then the divs will fill the squares perfectly.
+ * So we can render 4 lines as a square, this gets reused every time. Then we render a grid inbetween those lines that is (n-2)*(n-2), with evenly spaced lines.
+ * Because the official sizes that I'm starting out with is 5x5, 9x9 and 17x17, the canvas will be 855 canvas pixels wide. 855/5 = 171, 855/9 = 95 and 855/19 = 45. This gives me round numbers for each official board size.
  */
+
+/**
+ * well now we have a new problem, that being that I actually don't want the canvas to be fully 1:1 with the grid of squares, but I actually want it to be slightly smaller so I can still play stones correctly.
+ * The grid needs to actually start in the center of a corner square. So I need 
+ */
+
+/**
+ * Having dynamic + automatic resizeability is going to be a pain in the butt. I think I need to figure out all the line spacing, then have a function that calculates the spacing for the grid and where it should go based on the grid size, with clean numbers resulting with a 5x5, 9x9 or 19x19.
+ */
+
+// this will also be a problem for having the boardArray and all the calculations that that requires. 
