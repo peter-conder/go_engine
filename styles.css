@@ -53,8 +53,7 @@
     aspect-ratio: 1;
         resize: horizontal;
         overflow: hidden;
-    box-shadow: 10px 5px 5px #333333;
-    
+    box-shadow: 10px 5px 5px #333333;    
 }
 
 .boardCanvas {
@@ -63,7 +62,6 @@
     height: 100%;
     aspect-ratio: 1;    
     z-index: 1;
-    border-radius: 15px;
 }
 
 .squareContainer {
@@ -73,7 +71,6 @@
     display: grid;
     /**grid-template-columns: repeat(10, 10%);**/
     justify-content: space-evenly;
-    background-color: none;
     z-index: 1;
 }
 .square {

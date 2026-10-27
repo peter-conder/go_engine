@@ -1,5 +1,6 @@
 //This .js file makes the gameboard
 //plan to export the gameboard array for use in gameFlow.js
+const setup = (() => {
 
 const squareContainer = document.querySelector(".squareContainer");
 
@@ -8,26 +9,37 @@ const ctx = canvas.getContext("2d");
 ctx.fillStyle = "#B49A67";
 ctx.fillRect(0, 0, 1000, 1000);
 let boardArray = [];
-let square = {
-    isOccupied: false,
-};
+
+class Point {
+    constructor(isOccupied, liberty, boardID) {
+        this.isOccupied = isOccupied;
+        this.liberty = liberty;
+        this.boardID = boardID;
+    }
+}
+
 //this will get more robust in the future (maybe with things like isLiberty, who has a piece there, etc) but for now we can have isOccupied=true/false 
 
 function makeBoardGrid(n) {     //n = desired board size (5 will output a 5x5 board, etc)
-let t = 1;
+let t = 0;
 for (i=0; i<n*n; i++) {
-
     let newSquare = document.createElement("div");
     newSquare.classList.add(`square`);
     squareContainer.appendChild(newSquare);
-        //const textContent = document.createTextNode("square exist");
-        //newSquare.appendChild(textContent);
-    boardArray.push(square); 
+    const newPoint = new Point(0,0,t);
+    boardArray.push(newPoint); 
+        newSquare.addEventListener("click", () => {
+        console.log(`hi ${newPoint.boardID}`);
+        })
     t++;
         }
     let calculatedSpacing = 100/n;
     squareContainer.style.gridTemplateColumns=`repeat(${n}, ${calculatedSpacing}%)`;
 
+console.log(boardArray);
+//why does setting boardID to t make everything 25? t is 25 in every instance, but I need a number that stays the same for only the duration of loop and then changes. but t should be doing this right?
+//square is affecting the glocal object square, but not the individual object square. I think the squares need to be individual objects; so should I add classes here?
+    //PURELY COSMETIC
     function makeLineGrid() {
             // Draws square
             function drawSquare() {
@@ -100,16 +112,28 @@ for (i=0; i<n*n; i++) {
    
     makeLineGrid();
 }
-    makeBoardGrid(5);
-    console.log(boardArray);
+makeBoardGrid(5);
 
-let interactionSquare = document.querySelectorAll('.square');
-console.log(interactionSquare);
 
-const placeStone = () => {
+return {boardArray, makeBoardGrid};
+})()
 
-}
 
 //Will have board logic + creation in this file, and then will have game engine + playing other people in another file.
 //this works b/c module export has live copies, not a static copy that has to be updated.
 
+//====== Board Logic =======
+
+//when a square is clicked, the array updates then the board updates
+//all the array math/game logic should happen first and then the board should update to reflect that state
+//so first I need to add a function that updates the array on click eventListener
+
+const logic = (() => {
+    function placeStone(color, location) {
+       interactionSquare.addEventListener("click", () => {
+
+       }) 
+    }
+
+    //return {placeStone}
+})()
