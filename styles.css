@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #466365;
 }
 
 .separator {
     border: solid;
     border-radius: 15px;
+    background-color: #B8B8B8;
 }
 
 #leftSide {
@@ -25,7 +25,8 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     font-weight: 600;
-    color: #88292F;
+    color: black;
+    justify-self: center;
 }
 
 #center {
@@ -52,7 +53,7 @@
     aspect-ratio: 1;
         resize: horizontal;
         overflow: hidden;
-    box-shadow: 10px 5px 5px #324b4d;
+    box-shadow: 10px 5px 5px #333333;
     
 }
 

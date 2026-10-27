@@ -103,5 +103,13 @@ for (i=0; i<n*n; i++) {
     makeBoardGrid(5);
     console.log(boardArray);
 
+let interactionSquare = document.querySelectorAll('.square');
+console.log(interactionSquare);
+
+const placeStone = () => {
+
+}
+
 //Will have board logic + creation in this file, and then will have game engine + playing other people in another file.
-//this works b/c module export has live copies, not 
+//this works b/c module export has live copies, not a static copy that has to be updated.
+
