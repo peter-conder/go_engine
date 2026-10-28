@@ -45,7 +45,7 @@
     display: flex;
     justify-content: center;
     justify-self: center;
-    /*border: solid blue;*/
+    /*border: solid blue;8*/
     width: 30vw;
     max-width: 80%;
     min-width: 20%;
@@ -62,6 +62,7 @@
     height: 100%;
     aspect-ratio: 1;    
     z-index: 1;
+    /*border: solid black ;*/
 }
 
 .squareContainer {
@@ -75,7 +76,7 @@
 }
 .square {
     display: block;
-    /*border: solid blue;*/
+    /*border: solid blue 1px;*/
     aspect-ratio: 1;
     height: 100%;
     z-index: 1;
