@@ -84,6 +84,7 @@
 /**This is just for testing purposes**/
 .square:hover {
     background-color: lightgray;
-    transition: .4s;
+    opacity: 0.3;
+    transition: .8s;
 }
 
