@@ -62,9 +62,10 @@ for (i=0; i<n*n; i++) {
     let calculatedSpacing = 100/n;
     squareContainer.style.gridTemplateColumns=`repeat(${n}, ${calculatedSpacing}%)`;
 
+
+//====PURELY COSMETIC=====
 console.log(boardArray);
-    //PURELY COSMETIC
-    function makeLineGrid() {
+    function makeLineGrid(size) {
             // Draws square
             function drawSquare() {
             ctx.beginPath();
@@ -92,6 +93,7 @@ console.log(boardArray);
             ctx.stroke();
             }
             function drawGrid() {
+                //draws the grid
                 ctx.beginPath();
                 ctx.moveTo(300, 100);
                 ctx.lineTo(300, 900);
@@ -128,8 +130,8 @@ console.log(boardArray);
                 ctx.lineWidth = 5;
                 ctx.stroke();
             }
-        drawSquare();
-        drawGrid();
+        //drawSquare();
+        //drawGrid();
     }
    
     makeLineGrid();
