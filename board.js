@@ -34,9 +34,17 @@ class Group {
 
 const squareContainer = document.querySelector(".squareContainer");
 const canvas = document.querySelector(".boardCanvas");
+const border = document.querySelector(".borderCanvas");
 const ctx = canvas.getContext("2d");
 ctx.fillStyle = "#B49A67";
 ctx.fillRect(0, 0, 1000, 1000);
+const ctx2 = border.getContext("2d");
+ctx2.fillStyle = "#B49A67";
+ctx2.fillRect(0, 0, 1000, 1000);
+ctx2.clearRect(0,0,1000,1000);
+ctx2.strokeStyle = '#000000';
+ctx2.lineWidth = 2;
+ctx2.strokeRect(0,0,1000,1000)
 let boardArray = [];
 
 function makeDivGrid(n) {     //n = desired board size (5 will output a 5x5 board, etc)
@@ -63,85 +71,48 @@ for (i=0; i<n*n; i++) {
 
 
 //====PURELY COSMETIC=====
+//so to have dynamic lines, I need to start and end the lines at (1000/size)/2
 console.log(boardArray);
     function makeLineGrid(size) {
-            // Draws square
-            function drawSquare() {
-            ctx.beginPath();
-            ctx.moveTo(97.5, 100);
-            ctx.lineTo(900, 100);
-            ctx.lineWidth = 5;
-            ctx.stroke();
-            //====
-            ctx.beginPath();
-            ctx.moveTo(100, 100);
-            ctx.lineTo(100, 900);
-            ctx.lineWidth = 5;
-            ctx.stroke();
-            //====
-             ctx.beginPath();
-            ctx.moveTo(897.5, 900);
-            ctx.lineTo(900, 97.5);
-            ctx.lineWidth = 5;
-            ctx.stroke();
-            //====
-            ctx.beginPath();
-            ctx.moveTo(900,900);
-            ctx.lineTo(97.5, 900);
-            ctx.lineWidth = 5;
-            ctx.stroke();
-            }
             function drawGrid(size) {
                 let calculatedNumber = 1000/size;
                 //draws the grid
                 function drawHorizontal(size) {
-                console.log(`width calculated to be ${calculatedNumber}`);
                 let currentY = (1000/size)/2;
+                const snapShotY = (1000/size)/2;
+                console.log(snapShotY);
                 for (i=0; i<size; i++) {
                     ctx.beginPath(); //starts at 100
                     //start point
-                    ctx.moveTo(0, currentY);
+                    ctx.moveTo(0+snapShotY, currentY);
                     //end point
-                    ctx.lineTo(1000, currentY);
+                    ctx.lineTo(1000-snapShotY, currentY);
                     ctx.lineWidth = 2;
                     ctx.stroke();
                     currentY += calculatedNumber;
-                    console.log(currentY);
                 }}
                 function drawVertical(size) {
-                console.log(`height calculated to be ${calculatedNumber}`);
                 let currentX = (1000/size)/2;
+                const snapShotX = (1000/size)/2;
                 for (i=0; i<size; i++) {
                     ctx.beginPath(); //starts at 100
                     //start point
-                    ctx.moveTo(currentX, 0);
+                    ctx.moveTo(currentX, 0+snapShotX);
                     //end point
-                    ctx.lineTo(currentX, 1000);
+                    ctx.lineTo(currentX, 1000-snapShotX);
                     ctx.lineWidth = 2;
                     ctx.stroke();
                     currentX += calculatedNumber;
-                    console.log(currentX);
                 }}
                 drawHorizontal(size);
                 drawVertical(size);
             }
-        //drawSquare();
         drawGrid(size);
-        //drawGrid has to be optimized to work with 5x5, 9x9 and 13x13.
-        /**
-         * I need a for loop that loops =to n. But how do I make sure that they are all spaced correctly?
-         * the canvas grid is 1000x1000. 1000/19 = 52.6315789474
-         * 1000/9 = 111.1111111111
-         * 1000/5 = 200 
-         * I think I need 2 separate functions: drawHorizontal and drawVertical. 
-         * drawHorizontal will draw n-2 lines, starting at 1000/n pixels and adding 1000/n each iteration. 1000/n will be a variable that adds 1000/n each time the loop happens.
-         * same for vertical. I need to figure out the exact ctx.moveTo and ctx.lineTo arguments, but that shouldn't be extremely hard.
-         * */ 
     }
    
     makeLineGrid(n);
 }
-makeDivGrid(9);
+makeDivGrid(5);
 
 
 const nodeList = document.querySelectorAll('.square');
