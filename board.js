@@ -41,7 +41,7 @@ ctx.fillRect(0, 0, 1000, 1000);
 const ctx2 = border.getContext("2d");
 ctx2.fillStyle = "#B49A67";
 ctx2.fillRect(0, 0, 1000, 1000);
-ctx2.clearRect(0,0,1000,1000);
+ctx2.clearRect(0, 0, 1000,1000);
 ctx2.strokeStyle = '#000000';
 ctx2.lineWidth = 2;
 ctx2.strokeRect(0,0,1000,1000)
@@ -73,7 +73,7 @@ for (i=0; i<n*n; i++) {
 //====PURELY COSMETIC=====
 //so to have dynamic lines, I need to start and end the lines at (1000/size)/2
 console.log(boardArray);
-    function makeLineGrid(size) {
+    function drawCanvas(size) {
             function drawGrid(size) {
                 let calculatedNumber = 1000/size;
                 //draws the grid
@@ -107,12 +107,47 @@ console.log(boardArray);
                 drawHorizontal(size);
                 drawVertical(size);
             }
+        function addStarPoints(size) {
+            const star = 1000/size;
+            function makeStarPoint(x,y) {
+            ctx.beginPath();
+            ctx.arc(x,y, 5, 0, 2*Math.PI);
+            ctx.fillStyle = 'black';
+            ctx.fill();
+            ctx.lineWidth = 5 * (size/100);
+            ctx.stroke();}
+            makeStarPoint(500,500);
+            if (size === 9) {
+                makeStarPoint(star*2.5, star*2.5);
+                makeStarPoint(star*2.5, star*6.5);
+                makeStarPoint(star*6.5, star*2.5);
+                makeStarPoint(star*6.5, star*6.5);
+            } else if (size === 19) {
+                makeStarPoint(star*3.5, star*3.5);
+                makeStarPoint(star*3.5, star*15.5);
+                makeStarPoint(star*3.5, star*9.5);
+                makeStarPoint(star*9.5, star*3.5);
+                makeStarPoint(star*15.5, star*3.5);
+                makeStarPoint(star*15.5, star*9.5);
+                makeStarPoint(star*9.5, star*15.5);
+                makeStarPoint(star*15.5, star*15.5);
+
+            } else {
+                console.log("board size not supported (yet)");
+            }
+        }
+
+        function addBorder(size) {
+
+        }
         drawGrid(size);
+        addStarPoints(size);
     }
    
-    makeLineGrid(n);
+    drawCanvas(n);
 }
-makeDivGrid(5);
+makeDivGrid(9);
+
 
 
 const nodeList = document.querySelectorAll('.square');
