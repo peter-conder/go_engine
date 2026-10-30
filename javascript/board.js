@@ -49,7 +49,7 @@ let boardArray = [];
 
 function makeDivGrid(n) {     //n = desired board size (5 will output a 5x5 board, etc)
 let t = 0;
-for (i=0; i<n*n; i++) {
+for (let i=0; i<n*n; i++) {
     let newSquare = document.createElement("div");
     newSquare.classList.add(`square`);
     squareContainer.appendChild(newSquare);
@@ -81,7 +81,7 @@ console.log(boardArray);
                 let currentY = (1000/size)/2;
                 const snapShotY = (1000/size)/2;
                 console.log(snapShotY);
-                for (i=0; i<size; i++) {
+                for (let i=0; i<size; i++) {
                     ctx.beginPath(); //starts at 100
                     //start point
                     ctx.moveTo(0+snapShotY, currentY);
@@ -94,7 +94,7 @@ console.log(boardArray);
                 function drawVertical(size) {
                 let currentX = (1000/size)/2;
                 const snapShotX = (1000/size)/2;
-                for (i=0; i<size; i++) {
+                for (let i=0; i<size; i++) {
                     ctx.beginPath(); //starts at 100
                     //start point
                     ctx.moveTo(currentX, 0+snapShotX);
@@ -132,9 +132,7 @@ console.log(boardArray);
                 makeStarPoint(star*9.5, star*15.5);
                 makeStarPoint(star*15.5, star*15.5);
 
-            } else {
-                console.log("board size not supported (yet)");
-            }
+            } 
         }
 
         function addBorder(size) {
@@ -153,3 +151,5 @@ makeDivGrid(19);
 const nodeList = document.querySelectorAll('.square');
 const divList = Array.from(nodeList);
 console.log(divList); 
+
+export {nodeList, divList, boardArray, Player, Point, Stone, Group};

@@ -1,2 +1,3 @@
 //main game logic (turns, placing stones, calculating liberties and deaths, etc)
 //loop over elements of DOM and assign eventlisteners, use those eventlisteners to modify boardArray, update() runs and updates the DOM to match
+import { nodeList, divList, Player, Point, Stone, Group } from "./board.js";
