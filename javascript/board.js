@@ -146,7 +146,7 @@ console.log(boardArray);
    
     drawCanvas(n);
 }
-makeDivGrid(9);
+makeDivGrid(19);
 
 
 
