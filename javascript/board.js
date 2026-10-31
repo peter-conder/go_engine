@@ -49,13 +49,6 @@ for (let i=0; i<n*n; i++) {
     const newPoint = new Point(null,null,t);
     boardArray.push(newPoint); 
 
-        //newSquare.addEventListener("click",() => {
-          //  newPoint.isOccupied = "white";
-          //  return console.log(`${newPoint.isOccupied} at ${newPoint.boardID}`);
-       // });
-        //console.log(`${newPoint.isOccupied}`);
-        //return console.log(`hi ${newPoint.boardID}`);
-        //logic.placeStone(newPoint.boardID, "black")
 
     t++;
         }
@@ -65,7 +58,6 @@ for (let i=0; i<n*n; i++) {
 
 //====PURELY COSMETIC=====
 //so to have dynamic lines, I need to start and end the lines at (1000/size)/2
-console.log(boardArray);
     function drawCanvas(size) {
             function drawGrid(size) {
                 let calculatedNumber = 1000/size;
@@ -73,7 +65,6 @@ console.log(boardArray);
                 function drawHorizontal(size) {
                 let currentY = (1000/size)/2;
                 const snapShotY = (1000/size)/2;
-                console.log(snapShotY);
                 for (let i=0; i<size; i++) {
                     ctx.beginPath(); //starts at 100
                     //start point

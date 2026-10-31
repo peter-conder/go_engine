@@ -77,7 +77,8 @@
     z-index: 1;
 }
 .square {
-    display: block;
+    display: flex;
+    justify-content: center;
     /*border: solid blue 1px;*/
     aspect-ratio: 1;
     height: 100%;
@@ -85,11 +86,11 @@
 }
 
 /**This is just for testing purposes**/
-.square:hover {
+/*.square:hover {
     background-color: lightgray;
     opacity: 0.3;
     transition: .8s;
-}
+}*/
 
 #bottom {
     display: flex;
@@ -112,4 +113,13 @@
 #passOption:hover {
     background-color: lightskyblue;
     transition: ease-in-out .3s;
+}
+
+.stone {
+    width: 75%;
+    height: 75%;
+    border-radius: 50px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
 }
