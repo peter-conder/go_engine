@@ -143,6 +143,5 @@ makeDivGrid(5);
 
 const nodeList = document.querySelectorAll('.square');
 const divList = Array.from(nodeList);
-console.log(divList); 
 
 export {nodeList, divList, boardArray, Player, Point, Stone, Group};
