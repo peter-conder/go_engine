@@ -128,11 +128,12 @@ for (let i=0; i<n*n; i++) {
    
     drawCanvas(n);
 }
-makeDivGrid(5);
+let boardSize = 5;
+makeDivGrid(boardSize);
 
 
 
 const nodeList = document.querySelectorAll('.square');
 const divList = Array.from(nodeList);
 
-export {nodeList, divList, boardArray, Player, Point, Stone, Group};
+export {nodeList, divList, boardArray, Player, Point, Stone, Group, boardSize};

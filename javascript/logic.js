@@ -1,6 +1,6 @@
 //main game logic (turns, placing stones, calculating liberties and deaths, etc)
 //loop over elements of DOM and assign eventlisteners, use those eventlisteners to modify boardArray, update() runs and updates the DOM to match
-import { nodeList, divList, Player, Point, Stone, Group, boardArray } from "./board.js";
+import { nodeList, divList, Player, Point, Stone, Group, boardArray, boardSize } from "./board.js";
 
 let whoseTurn = 'black';
 const passButton = document.querySelector('#passOption');
@@ -43,7 +43,6 @@ const logic = (()=>{
 //how do I know which point on the board I clicked?
 for (let div of divList) {
     let divPoint=divList.indexOf(div);
-    console.log(divPoint);
     let idAtdivPoint = boardArray.at(divPoint).boardID;
     //div.addEventListener("click", () => {
        // console.log(idAtdivPoint)})}
