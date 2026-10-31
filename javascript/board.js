@@ -36,15 +36,8 @@ const squareContainer = document.querySelector(".squareContainer");
 const canvas = document.querySelector(".boardCanvas");
 const border = document.querySelector(".borderCanvas");
 const ctx = canvas.getContext("2d");
-ctx.fillStyle = "#B49A67";
+ctx.fillStyle = "#d6bd8a";
 ctx.fillRect(0, 0, 1000, 1000);
-const ctx2 = border.getContext("2d");
-ctx2.fillStyle = "#B49A67";
-ctx2.fillRect(0, 0, 1000, 1000);
-ctx2.clearRect(0, 0, 1000,1000);
-ctx2.strokeStyle = '#000000';
-ctx2.lineWidth = 2;
-ctx2.strokeRect(0,0,1000,1000)
 let boardArray = [];
 
 function makeDivGrid(n) {     //n = desired board size (5 will output a 5x5 board, etc)
@@ -144,7 +137,7 @@ console.log(boardArray);
    
     drawCanvas(n);
 }
-makeDivGrid(19);
+makeDivGrid(5);
 
 
 

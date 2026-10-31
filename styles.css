@@ -7,7 +7,7 @@
 .separator {
     border: solid;
     border-radius: 15px;
-    background-color: #B8B8B8;
+    background-color: lightgrey;
 }
 
 #leftSide {
@@ -52,9 +52,9 @@
     height: auto;
     aspect-ratio: 1;
         resize: horizontal;
-        overflow: hidden;
-    box-shadow: 10px 5px 5px #333333;    
+        overflow: hidden; 
 }
+
 
 .boardCanvas {
     position: absolute;
@@ -62,17 +62,9 @@
     height: 100%;
     aspect-ratio: 1;    
     z-index: 0;
-    /*border: solid black ;*/
+    border-radius: 15px;
 }
 
-.borderCanvas {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 1;    
-    z-index: 1;
-    /*border: solid black ;*/
-}
 
 
 .squareContainer {
