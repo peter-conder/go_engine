@@ -19,9 +19,10 @@ class Point {
 }
 
 class Stone {
-    constructor(location, group) {
+    constructor(location, group, playerColor) {
         this.location = location;
         this.group = group;
+        this.playerColor = playerColor;
     }
 }
 

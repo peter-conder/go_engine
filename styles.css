@@ -122,4 +122,17 @@
     display: flex;
     justify-self: center;
     align-self: center;
+    z-index: 1;
+}
+
+.marker {
+    position: absolute;
+    width: 2%;
+    height: 2%;
+    border-radius: 50px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    background-color: brown;
+    z-index: 2;
 }

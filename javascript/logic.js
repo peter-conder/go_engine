@@ -9,7 +9,36 @@ const passButton = document.querySelector('#passOption');
  * Play: make the divList, add querySelectors to all divs that can identify which div has been clicked.
  */
 
+//should I modify the array first then display everything? then go from there
+//click > array > DOM, eventlistener at bottom would call updateDOM instead of placeStone
+
 const logic = (()=>{
+
+
+        const makeLiberties = (spot, size)=> {
+        //making liberties is a tricky mathematical problem
+        let left = divList.at(spot-1);
+        let right = divList.at(spot+1);
+        let top = divList.at(spot-size);
+        let bottom = divList.at(spot+size);
+        
+        let markerL = document.createElement('div');
+        markerL.classList.add('markerL');
+        left.appendChild(markerL);
+
+        let markerR = document.createElement('div');
+        markerR.classList.add('markerR');
+        right.appendChild(markerR);
+
+        let markerT = document.createElement('div');
+        markerT.classList.add('markerT');
+        top.appendChild(markerT);
+
+        let markerB = document.createElement('div');
+        markerB.classList.add('markerB');
+        bottom.appendChild(markerB);
+    }
+
     //temporaryPlace: place stone on DOM
     const placeStone = (spot)=>{
         if(boardArray.at(spot).isOccupied===null){
@@ -17,17 +46,50 @@ const logic = (()=>{
         stone.classList.add('stone');
         if (whoseTurn === 'black') {
             stone.style.backgroundColor = '#161b1f';
+            whoseTurn = 'white';
         } else if (whoseTurn === 'white') {
-            stone.style.backgroundColor = '##ede6df';
+            stone.style.backgroundColor = '#ede6df';
+            whoseTurn = 'black';
         }
         let space = divList.at(spot);
         space.appendChild(stone);
-        boardArray.at(spot).isOccupied =  new Stone(spot, null);
-        console.log(boardArray);}
+        boardArray.at(spot).isOccupied =  new Stone(spot, null, null);
+        makeLiberties(spot, boardSize);
+        console.log(boardArray);
+            }
         else {
             console.error("cannot place a stone here!!");
         }
     }
+
+    const updateDOM = () => {
+        //loop over the boardArray and display stones + liberties
+        boardArray.forEach(modifyDOM);
+        function modifyDOM(element, index) {
+        
+            if (element.isOccupied !== null) {
+                let stone = document.createElement('div');
+                stone.classList.add('stone');
+                {if (element.isOccupied.playerColor === 'black') {
+                        stone.style.backgroundColor = '#161b1f'
+                    } else if (element.isOccupied.playerColor === 'white') {
+                        stone.style.backgroundColor = '#ede6df'
+                    }}
+                let space = divList.at(index);
+                space.appendChild(stone);
+                    //console.log(`stone spawned in at ${index}, color is ${element.isOccupied.playerColor}`);
+            } if (element.liberty !== null) {
+                //console.log(`there is a liberty at ${index}`);
+                let marker = document.createElement('div');
+                marker.classList.add('marker');
+                let libSpace = divList.at(index);
+                libSpace.appendChild(marker);
+            } else {
+                return console.log('nothing happened')
+            }
+        };  
+    }
+
     //ko: run ko check
     //checkSuicide: update liberties, check suicide
     //placeBoardArray: place stone in array
@@ -36,12 +98,12 @@ const logic = (()=>{
     //updateDOM: update DOM according to the array
 
     //placeStone: place Stone on DOM
-    return {placeStone};
+    return {placeStone, makeLiberties, updateDOM};
 })()
 
 //logic.placeStone(7);
 //logic.placeStone(19);
-
+console.log(boardArray);
 //this for is a loop. that means it happens 25x, 361x, etc.
 
 //how to link nodelist to divList?
@@ -55,5 +117,14 @@ for (let div of divList) {
 
     div.addEventListener("click", () => {logic.placeStone(divPoint)})};
 
+    (() => {
+       /**boardArray.at(3).isOccupied = new Stone(3,null,"black");
+        boardArray.at(4).isOccupied = new Stone(3,null,"white");
+        boardArray.at(17).isOccupied = new Stone(3,null,"black");
+        boardArray.at(8).isOccupied = new Stone(3,null,"white");
+        boardArray.at(8).liberty = 'liberty';**/
 
+    })()
+
+    logic.updateDOM();
 //the boardID of the object that is at the same index of boardArray as y.
