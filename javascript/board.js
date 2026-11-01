@@ -11,18 +11,20 @@ class Player {
     }
 }
 class Point {
-    constructor(isOccupied, liberty, boardID) {
+    constructor(isOccupied, liberty, boardID, libertyNew) {
         this.isOccupied = isOccupied;
         this.liberty = liberty;
+        this.libertyNew = libertyNew;
         this.boardID = boardID;
     }
 }
 
 class Stone {
-    constructor(location, group, playerColor) {
+    constructor(location, group, playerColor, isNew) {
         this.location = location;
         this.group = group;
         this.playerColor = playerColor;
+        this.isNew = isNew;
     }
 }
 
@@ -47,7 +49,7 @@ for (let i=0; i<n*n; i++) {
     let newSquare = document.createElement("div");
     newSquare.classList.add(`square`);
     squareContainer.appendChild(newSquare);
-    const newPoint = new Point(null,null,t);
+    const newPoint = new Point(null,null,null,t);
     boardArray.push(newPoint); 
 
 

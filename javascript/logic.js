@@ -42,24 +42,20 @@ const logic = (()=>{
     //temporaryPlace: place stone on DOM
     const placeStone = (spot)=>{
         if(boardArray.at(spot).isOccupied===null){
-        let stone = document.createElement('div');
-        stone.classList.add('stone');
-        if (whoseTurn === 'black') {
-            stone.style.backgroundColor = '#161b1f';
+        boardArray.at(spot).isOccupied =  new Stone(spot, null, whoseTurn, null);
+            if (whoseTurn === 'black') {
             whoseTurn = 'white';
         } else if (whoseTurn === 'white') {
-            stone.style.backgroundColor = '#ede6df';
-            whoseTurn = 'black';
-        }
-        let space = divList.at(spot);
-        space.appendChild(stone);
-        boardArray.at(spot).isOccupied =  new Stone(spot, null, null);
-        makeLiberties(spot, boardSize);
+            whoseTurn = 'black';} 
+        //makeLiberties(spot, boardSize);
         console.log(boardArray);
             }
         else {
             console.error("cannot place a stone here!!");
         }
+    
+    logic.updateDOM();
+
     }
 
     const updateDOM = () => {
@@ -67,9 +63,11 @@ const logic = (()=>{
         boardArray.forEach(modifyDOM);
         function modifyDOM(element, index) {
         
-            if (element.isOccupied !== null) {
+            if (element.isOccupied !== null && element.isOccupied.isNew != "old") {
+                console.log(element.isOccupied.isNew);
                 let stone = document.createElement('div');
                 stone.classList.add('stone');
+                console.log(element.isOccupied.playerColor);
                 {if (element.isOccupied.playerColor === 'black') {
                         stone.style.backgroundColor = '#161b1f'
                     } else if (element.isOccupied.playerColor === 'white') {
@@ -77,13 +75,17 @@ const logic = (()=>{
                     }}
                 let space = divList.at(index);
                 space.appendChild(stone);
+                element.isOccupied.isNew = 'old';
+                console.log(element.isOccupied.isNew);
                     //console.log(`stone spawned in at ${index}, color is ${element.isOccupied.playerColor}`);
-            } if (element.liberty !== null) {
+            }            
+            if (element.liberty !== null && element.libertyNew !== "old") {
                 //console.log(`there is a liberty at ${index}`);
                 let marker = document.createElement('div');
                 marker.classList.add('marker');
                 let libSpace = divList.at(index);
                 libSpace.appendChild(marker);
+                element.libertyNew = "old";
             } else {
                 return console.log('nothing happened')
             }
@@ -126,5 +128,5 @@ for (let div of divList) {
 
     })()
 
-    logic.updateDOM();
+    //logic.updateDOM();
 //the boardID of the object that is at the same index of boardArray as y.
