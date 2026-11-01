@@ -12,6 +12,7 @@ const passButton = document.querySelector('#passOption');
 const logic = (()=>{
     //temporaryPlace: place stone on DOM
     const placeStone = (spot)=>{
+        if(boardArray.at(spot).isOccupied===null){
         let stone = document.createElement('div');
         stone.classList.add('stone');
         if (whoseTurn === 'black') {
@@ -21,6 +22,11 @@ const logic = (()=>{
         }
         let space = divList.at(spot);
         space.appendChild(stone);
+        boardArray.at(spot).isOccupied =  new Stone(spot, null);
+        console.log(boardArray);}
+        else {
+            console.error("cannot place a stone here!!");
+        }
     }
     //ko: run ko check
     //checkSuicide: update liberties, check suicide
