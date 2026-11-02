@@ -15,29 +15,22 @@ const passButton = document.querySelector('#passOption');
 const logic = (()=>{
 
 
-        const makeLiberties = (spot, size)=> {
+        const makeLiberties = (place, size)=> {
         //making liberties is a tricky mathematical problem
-        let left = divList.at(spot-1);
-        let right = divList.at(spot+1);
-        let top = divList.at(spot-size);
-        let bottom = divList.at(spot+size);
-        
-        let markerL = document.createElement('div');
-        markerL.classList.add('markerL');
-        left.appendChild(markerL);
-
-        let markerR = document.createElement('div');
-        markerR.classList.add('markerR');
-        right.appendChild(markerR);
-
-        let markerT = document.createElement('div');
-        markerT.classList.add('markerT');
-        top.appendChild(markerT);
-
-        let markerB = document.createElement('div');
-        markerB.classList.add('markerB');
-        bottom.appendChild(markerB);
-    }
+        let left = boardArray.at(place-1).boardID;
+        let right = boardArray.at(place+1).boardID;
+        let top = boardArray.at(place-size).boardID;
+        let bottom = boardArray.at(place+size).boardID;
+        //console.log(left, right, top, bottom);
+        let libertyArray = [];
+        libertyArray.push(left, right, top, bottom);
+        //libertyArray.forEach(checkBorders);
+        //console.log(left, right, top, bottom);
+        boardArray.at(left).liberty = 'liberty';
+        boardArray.at(right).liberty = 'liberty';
+        boardArray.at(top).liberty = 'liberty';
+        boardArray.at(bottom).liberty = 'liberty';
+        }
 
     //temporaryPlace: place stone on DOM
     const placeStone = (spot)=>{
@@ -47,8 +40,8 @@ const logic = (()=>{
             whoseTurn = 'white';
         } else if (whoseTurn === 'white') {
             whoseTurn = 'black';} 
-        //makeLiberties(spot, boardSize);
-        console.log(boardArray);
+        logic.makeLiberties(spot, boardSize);
+        //console.log(boardArray);
             }
         else {
             console.error("cannot place a stone here!!");
@@ -64,10 +57,10 @@ const logic = (()=>{
         function modifyDOM(element, index) {
         
             if (element.isOccupied !== null && element.isOccupied.isNew != "old") {
-                console.log(element.isOccupied.isNew);
+                //console.log(element.isOccupied.isNew);
                 let stone = document.createElement('div');
                 stone.classList.add('stone');
-                console.log(element.isOccupied.playerColor);
+                //console.log(element.isOccupied.playerColor);
                 {if (element.isOccupied.playerColor === 'black') {
                         stone.style.backgroundColor = '#161b1f'
                     } else if (element.isOccupied.playerColor === 'white') {
@@ -76,10 +69,11 @@ const logic = (()=>{
                 let space = divList.at(index);
                 space.appendChild(stone);
                 element.isOccupied.isNew = 'old';
-                console.log(element.isOccupied.isNew);
+                //console.log(element.libertyNew);
+                //console.log(element.isOccupied.isNew);
                     //console.log(`stone spawned in at ${index}, color is ${element.isOccupied.playerColor}`);
             }            
-            if (element.liberty !== null && element.libertyNew !== "old") {
+            if (element.liberty !== null) {
                 //console.log(`there is a liberty at ${index}`);
                 let marker = document.createElement('div');
                 marker.classList.add('marker');
@@ -87,7 +81,7 @@ const logic = (()=>{
                 libSpace.appendChild(marker);
                 element.libertyNew = "old";
             } else {
-                return console.log('nothing happened')
+                //return console.log('nothing happened')
             }
         };  
     }

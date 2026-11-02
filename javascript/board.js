@@ -11,7 +11,7 @@ class Player {
     }
 }
 class Point {
-    constructor(isOccupied, liberty, boardID, libertyNew) {
+    constructor(isOccupied, liberty, libertyNew, boardID) {
         this.isOccupied = isOccupied;
         this.liberty = liberty;
         this.libertyNew = libertyNew;
@@ -49,7 +49,7 @@ for (let i=0; i<n*n; i++) {
     let newSquare = document.createElement("div");
     newSquare.classList.add(`square`);
     squareContainer.appendChild(newSquare);
-    const newPoint = new Point(null,null,null,t);
+    const newPoint = new Point(null, null, null, t);
     boardArray.push(newPoint); 
 
 
