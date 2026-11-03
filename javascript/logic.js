@@ -15,21 +15,36 @@ const passButton = document.querySelector('#passOption');
 const logic = (()=>{
 
 
-        const makeLiberties = (place, size)=> {
-        //making liberties is a tricky mathematical problem
-        let left = boardArray.at(place-1).boardID;
-        let right = boardArray.at(place+1).boardID;
-        let top = boardArray.at(place-size).boardID;
-        let bottom = boardArray.at(place+size).boardID;
-        //console.log(left, right, top, bottom);
-        let libertyArray = [];
-        libertyArray.push(left, right, top, bottom);
-        //libertyArray.forEach(checkBorders);
-        //console.log(left, right, top, bottom);
-        boardArray.at(left).liberty = 'liberty';
-        boardArray.at(right).liberty = 'liberty';
-        boardArray.at(top).liberty = 'liberty';
-        boardArray.at(bottom).liberty = 'liberty';
+        const adjacent = (place, size)=> {
+            let adjacentArray = [];
+            let x = place % size;
+            let y = Math.floor(place / size);
+            let left = (x-1)+(size*y);
+            if (left < 0) {
+                    left = null;
+                } 
+                        adjacentArray.push(left);
+            let right = (x+1)+(size*y);
+            if (right > size*size-1) {
+                    right = null;
+                }
+                        adjacentArray.push(right);
+            let top = x+size*(y-1);
+                if (top < 0) {
+                    top = null;
+                }
+                        adjacentArray.push(top);
+            let bottom = x+size*(y+1);
+                if (bottom > size*size-1) {
+                    bottom = null;
+                }
+                        adjacentArray.push(bottom);
+            //i notation = single number
+            //click > convert click to x,y > calculate adjacent cells in x,y > check if null > check if in same row/column > convert cells back to i > return all adjacent cells in i notation
+
+        //need to add filter to make sure that liberties can only be on certain rows.
+        //same row if x-coordinates match, same column if y-coordinates match.
+            return adjacentArray;
         }
 
     //temporaryPlace: place stone on DOM
@@ -40,7 +55,7 @@ const logic = (()=>{
             whoseTurn = 'white';
         } else if (whoseTurn === 'white') {
             whoseTurn = 'black';} 
-        logic.makeLiberties(spot, boardSize);
+        //logic.makeLiberties(spot, boardSize);
         //console.log(boardArray);
             }
         else {
@@ -94,7 +109,7 @@ const logic = (()=>{
     //updateDOM: update DOM according to the array
 
     //placeStone: place Stone on DOM
-    return {placeStone, makeLiberties, updateDOM};
+    return {placeStone, adjacent, updateDOM};
 })()
 
 //logic.placeStone(7);
